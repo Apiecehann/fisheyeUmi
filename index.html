@@ -131,7 +131,7 @@
         <div class="content has-text-centered">
           <img src="./static/images/figure2.png" alt="Real-World Hardware Setup" style="width: 100%;">
           <p class="has-text-justified mt-3">
-            Figure 2: Our hardware platform comprises a <strong>Flexiv Rizon 4</strong> 7-axis robot arm and a <strong>DH AG-160-95</strong> adaptive gripper. 
+            Figure 1: Our hardware platform comprises a <strong>Flexiv Rizon 4</strong> 7-axis robot arm and a <strong>DH AG-160-95</strong> adaptive gripper. 
             High-quality demonstrations are collected via teleoperation with a <strong>Meta Quest 3</strong> headset.
           </p>
         </div>
@@ -142,7 +142,7 @@
         <div class="content has-text-centered">
           <img src="./static/images/figure3.png" alt="Simulation Rendering Pipeline" style="width: 100%;">
           <p class="has-text-justified mt-3">
-            Figure 3: To enable reliable fisheye benchmarking, we implemented a <strong>two-stage projection pipeline</strong> within the <strong>MuJoCo</strong> physics engine. 
+            Figure 2: To enable reliable fisheye benchmarking, we implemented a <strong>two-stage projection pipeline</strong> within the <strong>MuJoCo</strong> physics engine. 
             This process generates fisheye views from intermediate panoramic representations, allowing for precise lens parameter control.
           </p>
         </div>
@@ -151,7 +151,7 @@
       <div class="column is-12">
         <div class="box has-background-light">
           <h4 class="title is-5">Scaling Simulation Capabilities</h4>
-          <p class="is-size-5">
+          <p class="is-size-6">
             We adapt <strong>Robomimic</strong> and <strong>MimicGen</strong> benchmarks to evaluate our policies across <strong>6 challenging manipulation tasks</strong>. 
             To support RQ2, we utilize <strong>32 distinct background textures</strong> to provide sufficient environmental diversity during training.
           </p>
@@ -168,7 +168,7 @@
     <div class="content has-text-centered">
       <img src="./static/images/figure1.png" alt="Study Design Overview" style="width: 100%;">
       <p class="has-text-justified mt-4">
-        Figure 1: Overview of the four factors analyzed to address our research questions: 
+        Figure 3: Overview of the four factors analyzed to address our research questions: 
         <strong>(a) Camera Model</strong> (Fisheye vs. Pinhole); 
         <strong>(b) Scene Complexity</strong> for spatial localization (RQ1); 
         <strong>(c) Scene Diversity</strong> for scene generalization (RQ2); 
@@ -178,6 +178,88 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">RQ1: Spatial Localization</h2>
+    
+    <div class="content is-size-5 has-text-justified">
+      <p>
+        In this section, we investigate whether the wider FoV of fisheye cameras enhances policy localization. 
+        Given our wrist-view-only configuration, the policy must rely on background cues for spatial reasoning.
+      </p>
+
+      <div class="box has-background-info-light">
+        <p>
+          <strong>Hypothesis:</strong> The fisheye's wider FoV enables superior policy localization by integrating a greater density of background features, 
+          leading to a strong positive dependency on the visual richness of the scene.
+        </p>
+      </div>
+
+      <p>
+        We validate this through task performance in <strong>feature-poor</strong> vs. <strong>feature-rich</strong> backgrounds. 
+        The results confirm that rich backgrounds are critical, with the fisheye camera showing a significantly higher average performance gain of <strong>+0.39</strong> in the real world.
+      </p>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <h4 class="title is-5 has-text-centered">Simulation Performance (SR)</h4>
+        <table class="table is-fullwidth is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Camera</th>
+              <th>Feature</th>
+              <th>Avg. Success Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pinhole (Single)</td>
+              <td>Poor / Rich</td>
+              <td>0.31 / 0.34 (+0.03)</td>
+            </tr>
+            <tr class="has-background-warning-light">
+              <td><strong>Fisheye (Single)</strong></td>
+              <td>Poor / Rich</td>
+              <td><strong>0.57 / 0.66 (+0.09)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="is-size-6">Table 1: Fisheye cameras exploit rich textures more effectively to boost success rates.</p>
+      </div>
+
+      <div class="column is-6">
+        <h4 class="title is-5 has-text-centered">Spatial Awareness Probing</h4>
+        <table class="table is-fullwidth is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Configuration</th>
+              <th>Trans. Error (cm) ↓</th>
+              <th>Rot. Error (°) ↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pinhole Poor</td>
+              <td>9.80</td>
+              <td>9.160</td>
+            </tr>
+            <tr class="has-background-success-light">
+              <td><strong>Fisheye Rich</strong></td>
+              <td><strong>1.73</strong></td>
+              <td><strong>1.578</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="is-size-6">Table 2: Probing translation and rotation errors in the <i>Pick Cup</i> task.</p>
+      </div>
+    </div>
+
+    <div class="notification is-light mt-4">
+      <p class="is-size-6">
+        <strong>Conclusion:</strong> To maximize performance, data should be collected in <strong>visually complex and feature-rich environments</strong> to fully unlock the fisheye's spatial localization capabilities.
+      </p>
+    </div>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
