@@ -43,7 +43,6 @@
             <span class="author-block"><a href="https://www.mvig.org/">Cewu Lu</a><sup>1,4,5‡</sup>,</span>
             <span class="author-block"><a href="#">Chuan Wen</a><sup>1‡</sup></span>
           </div>
-
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University,</span>
             <span class="author-block"><sup>2</sup>Southeast University,</span>
@@ -51,12 +50,10 @@
             <span class="author-block"><sup>4</sup>Shanghai Innovation Institute,</span>
             <span class="author-block"><sup>5</sup>Noematrix Ltd.</span>
           </div>
-
           <div class="is-size-6 publication-authors">
             <span class="author-block">* Equal contribution.</span>
             <span class="author-block">‡ Equal advising.</span>
           </div>
-
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
@@ -103,7 +100,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified is-size-5.5">
+        <div class="content has-text-justified">
           <p>
             The adoption of fisheye cameras in robotic manipulation, driven by their exceptionally wide Field of View (FoV), is rapidly outpacing a systematic understanding of their downstream effects on policy learning. This paper presents the first comprehensive empirical study to bridge this gap, rigorously analyzing the properties of wrist-mounted fisheye cameras for imitation learning. Through extensive experiments in both simulation and the real world, we investigate three critical research questions: spatial localization, scene generalization, and hardware generalization. Our investigation reveals that:
           </p>
@@ -131,29 +128,30 @@
         <div class="content has-text-centered">
           <img src="./static/images/figure2.png" alt="Real-World Hardware Setup" style="width: 100%;">
           <p class="has-text-justified mt-3">
-            Figure 1: Our hardware platform comprises a <strong>Flexiv Rizon 4</strong> 7-axis robot arm and a <strong>DH AG-160-95</strong> adaptive gripper. 
-            High-quality demonstrations are collected via teleoperation with a <strong>Meta Quest 3</strong> headset.
+            Figure 1: Our hardware platform comprises a <strong>Flexiv Rizon 4</strong> 7-axis robot arm and a <strong>DH AG-160-95</strong> adaptive gripper. High-quality demonstrations are collected via teleoperation with a <strong>Meta Quest 3</strong> headset.
           </p>
         </div>
       </div>
-    </div> <div class="columns is-centered">
+    </div> 
+
+    <div class="columns is-centered">
       <div class="column is-12">
         <h3 class="title is-4 has-text-centered">Simulation Environment</h3>
         <div class="content has-text-centered">
           <img src="./static/images/figure3.png" alt="Simulation Rendering Pipeline" style="width: 100%;">
           <p class="has-text-justified mt-3">
-            Figure 2: To enable reliable fisheye benchmarking, we implemented a <strong>two-stage projection pipeline</strong> within the <strong>MuJoCo</strong> physics engine. 
-            This process generates fisheye views from intermediate panoramic representations, allowing for precise lens parameter control.
+            Figure 2: To enable reliable fisheye benchmarking, we implemented a <strong>two-stage projection pipeline</strong> within the <strong>MuJoCo</strong> physics engine. This process generates fisheye views from intermediate panoramic representations, allowing for precise lens parameter control.
           </p>
         </div>
       </div>
-    </div> <div class="columns is-centered">
+    </div> 
+
+    <div class="columns is-centered">
       <div class="column is-12">
         <div class="box has-background-light">
           <h4 class="title is-5">Scaling Simulation Capabilities</h4>
-          <p class="is-size-6">
-            We adapt <strong>Robomimic</strong> and <strong>MimicGen</strong> benchmarks to evaluate our policies across <strong>6 challenging manipulation tasks</strong>. 
-            To support RQ2, we utilize <strong>32 distinct background textures</strong> to provide sufficient environmental diversity during training.
+          <p class="content">
+            We adapt <strong>Robomimic</strong> and <strong>MimicGen</strong> benchmarks to evaluate our policies across <strong>6 challenging manipulation tasks</strong>. To support RQ2, we utilize <strong>32 distinct background textures</strong> to provide sufficient environmental diversity during training.
           </p>
         </div>
       </div>
@@ -164,15 +162,11 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Research Questions</h2>
-<h3 class="subtitle is-5 has-text-weight-bold">Overview</h3>
+    <h3 class="subtitle is-5 has-text-weight-bold">Overview</h3>
     <div class="content has-text-centered">
       <img src="./static/images/figure1.png" alt="Study Design Overview" style="width: 100%;">
       <p class="has-text-justified mt-4">
-        Figure 3: Overview of the four factors analyzed to address our research questions: 
-        <strong>(a) Camera Model</strong> (Fisheye vs. Pinhole); 
-        <strong>(b) Scene Complexity</strong> for spatial localization (RQ1); 
-        <strong>(c) Scene Diversity</strong> for scene generalization (RQ2); 
-        <strong>(d) Camera Parameters</strong> for hardware generalization (RQ3).
+        Figure 3: Overview of the four factors analyzed to address our research questions: (a) Camera Model; (b) Scene Complexity; (c) Scene Diversity; (d) Camera Parameters.
       </p>
     </div>
   </div>
@@ -181,23 +175,17 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">RQ1: Spatial Localization</h2>
-    
-    <div class="content is-size-5 has-text-justified">
+    <div class="content has-text-justified">
       <p>
-        In this section, we investigate whether the wider FoV of fisheye cameras enhances policy localization. 
-        Given our wrist-view-only configuration, the policy must rely on background cues for spatial reasoning.
+        In this section, we investigate whether the wider FoV of fisheye cameras enhances policy localization. Given our wrist-view-only configuration, the policy must rely on background cues for spatial reasoning.
       </p>
-
       <div class="box has-background-info-light">
         <p>
-          <strong>Hypothesis:</strong> The fisheye's wider FoV enables superior policy localization by integrating a greater density of background features, 
-          leading to a strong positive dependency on the visual richness of the scene.
+          <strong>Hypothesis:</strong> The fisheye's wider FoV enables superior policy localization by integrating a greater density of background features, leading to a strong positive dependency on the visual richness of the scene.
         </p>
       </div>
-
       <p>
-        We validate this through task performance in <strong>feature-poor</strong> vs. <strong>feature-rich</strong> backgrounds. 
-        The results confirm that rich backgrounds are critical, with the fisheye camera showing a significantly higher average performance gain of <strong>+0.39</strong> in the real world.
+        We validate this through task performance in <strong>feature-poor</strong> vs. <strong>feature-rich</strong> backgrounds. The results confirm that rich backgrounds are critical, with the fisheye camera showing an average gain of <strong>+0.39</strong> in the real world.
       </p>
     </div>
 
@@ -206,60 +194,102 @@
         <h4 class="title is-5 has-text-centered">Simulation Performance (SR)</h4>
         <table class="table is-fullwidth is-striped is-hoverable">
           <thead>
-            <tr>
-              <th>Camera</th>
-              <th>Feature</th>
-              <th>Avg. Success Rate</th>
-            </tr>
+            <tr><th>Camera</th><th>Feature</th><th>Avg. Success Rate</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Pinhole (Single)</td>
-              <td>Poor / Rich</td>
-              <td>0.31 / 0.34 (+0.03)</td>
-            </tr>
-            <tr class="has-background-warning-light">
-              <td><strong>Fisheye (Single)</strong></td>
-              <td>Poor / Rich</td>
-              <td><strong>0.57 / 0.66 (+0.09)</strong></td>
-            </tr>
+            <tr><td>Pinhole (Single)</td><td>Poor / Rich</td><td>0.31 / 0.34 (+0.03)</td></tr>
+            <tr class="has-background-warning-light"><td><strong>Fisheye (Single)</strong></td><td>Poor / Rich</td><td><strong>0.57 / 0.66 (+0.09)</strong></td></tr>
           </tbody>
         </table>
-        <p class="is-size-6">Table 1: Fisheye cameras exploit rich textures more effectively to boost success rates.</p>
+        <p class="content is-size-6">Table 1: Performance comparison in simulation.</p>
       </div>
-
       <div class="column is-6">
         <h4 class="title is-5 has-text-centered">Spatial Awareness Probing</h4>
         <table class="table is-fullwidth is-striped is-hoverable">
           <thead>
-            <tr>
-              <th>Configuration</th>
-              <th>Trans. Error (cm) ↓</th>
-              <th>Rot. Error (°) ↓</th>
+            <tr><th>Configuration</th><th>Trans. Error (cm) ↓</th><th>Rot. Error (°) ↓</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Pinhole Poor</td><td>9.80</td><td>9.160</td></tr>
+            <tr class="has-background-success-light"><td><strong>Fisheye Rich</strong></td><td><strong>1.73</strong></td><td><strong>1.578</strong></td></tr>
+          </tbody>
+        </table>
+        <p class="content is-size-6">Table 2: Spatial probing errors in <i>Pick Cup</i>.</p>
+      </div>
+    </div>
+    <div class="notification is-light mt-4">
+      <p>
+        <strong>Conclusion:</strong> To maximize performance, data should be collected in <strong>visually complex and feature-rich environments</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">RQ2: Scene Generalization</h2>
+    <div class="content has-text-justified">
+      <p>
+        We investigate the <strong>Scaling Law</strong> of policy generalization as environmental diversity increases. Fisheye cameras exhibit a significantly higher performance ceiling compared to pinhole cameras.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-10 has-text-centered">
+        <img src="./static/images/figure4.png" alt="Scaling Law Results" style="width: 100%; border-radius: 10px;">
+        <p class="mt-2">
+          <strong>Figure 4:</strong> Success rate vs. number of training scenes (<i>N</i>).
+        </p>
+      </div>
+    </div>
+    <div class="notification is-info is-light mt-4">
+      <p>
+        <strong>Insight:</strong> The fisheye policy achieves near-perfect scores with <i>N=8</i> scenes, proving it captures <strong>invariant geometric features</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">RQ3: Hardware Generalization</h2>
+    <div class="content has-text-justified">
+      <p>
+        Direct transfer across different camera models often fails due to <strong>Scale Overfitting</strong>. Policies overfit to specific focal lengths of the training camera.
+      </p>
+      <div class="box has-background-warning-light">
+        <p>
+          <strong>The Discovery:</strong> RSA forces the model to learn scale-invariant representations, effectively bridging the hardware gap.
+        </p>
+      </div>
+      <h3 class="title is-4">Random Scale Augmentation (RSA)</h3>
+      <p>
+        RSA randomized cropping and resizing during training prevents scale overfitting.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <h4 class="title is-5 has-text-centered">Cross-Hardware Transfer Success Rate</h4>
+        <table class="table is-fullwidth is-bordered is-striped">
+          <thead>
+            <tr class="has-background-light">
+              <th>Training Setup</th><th>Evaluation Hardware</th><th>Vanilla</th><th><strong>With RSA</strong></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Pinhole Poor</td>
-              <td>9.80</td>
-              <td>9.160</td>
-            </tr>
-            <tr class="has-background-success-light">
-              <td><strong>Fisheye Rich</strong></td>
-              <td><strong>1.73</strong></td>
-              <td><strong>1.578</strong></td>
-            </tr>
+            <tr><td>Camera A</td><td>Camera B</td><td>0.18</td><td><strong>0.64 (+255%)</strong></td></tr>
+            <tr><td>Camera B</td><td>Camera A</td><td>0.22</td><td><strong>0.59 (+168%)</strong></td></tr>
           </tbody>
         </table>
-        <p class="is-size-6">Table 2: Probing translation and rotation errors in the <i>Pick Cup</i> task.</p>
+        <p class="has-text-centered">Table 4: RSA boost during cross-hardware deployment.</p>
       </div>
     </div>
-
-    <div class="notification is-light mt-4">
-      <p class="is-size-6">
-        <strong>Conclusion:</strong> To maximize performance, data should be collected in <strong>visually complex and feature-rich environments</strong> to fully unlock the fisheye's spatial localization capabilities.
+    <div class="notification is-success is-light mt-5">
+      <p>
+        <strong>Actionable Guidance:</strong> RSA ensures policies remain robust across diverse camera hardware.
       </p>
     </div>
+  </div>
+</section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
