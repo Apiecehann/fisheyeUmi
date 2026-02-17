@@ -2,36 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Fisheye, UMI, Manipulation">
+  <meta name="description" content="An empirical study on the properties of wrist-mounted fisheye cameras for robotic imitation learning.">
+  <meta name="keywords" content="Fisheye, UMI, Manipulation, Robotic Learning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rethinking Camera Choice : An Empirical Study on Fisheye Camera Properties
-in Robotic Manipulation</title>
+  <title>Rethinking Camera Choice : An Empirical Study on Fisheye Camera Properties in Robotic Manipulation</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
@@ -49,73 +30,52 @@ in Robotic Manipulation</title>
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Rethinking Camera Choice: An Empirical Study on Fisheye Camera Properties in Robotic Manipulation</h1>
-            <div class="is-size-5 publication-authors">
-            
-              <div class="is-size-4 publication-authors">
-                <span class="author-block has-text-weight-bold">CVPR 2026</span>
-              </div>
-            
-              <span class="author-block">
-                <a href="https://hanxue.me/">Han Xue</a><sup>1*</sup>,</span>
-              <span class="author-block">
-                <a href="https://apiecehann.github.io/">Min Nan</a><sup>2*</sup>,</span>
-              <span class="author-block">
-                <a href="URL_TO_XIAOTONG_LIU">Xiaotong Liu</a><sup>3,4*</sup>,</span>
-              <span class="author-block">
-                <a href="https://wendichen.me/">Wendi Chen</a><sup>1,4</sup>,</span>
-              <span class="author-block">
-                <a href="URL_TO_YUAN_FANG">Yuan Fang</a><sup>1,4</sup>,</span>
-              <span class="author-block">
-                <a href="URL_TO_JUN_LV">Jun Lv</a><sup>5</sup>,</span>
-              <span class="author-block">
-                <a href="https://www.mvig.org/">Cewu Lu</a><sup>1,4,5‡</sup>,</span>
-              <span class="author-block">
-                <a href="URL_TO_CHUAN_WEN">Chuan Wen</a><sup>1‡</sup></span>
-            </div>
+          <div class="is-size-4 publication-authors">
+            <span class="author-block has-text-weight-bold">CVPR 2026</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://hanxue.me/">Han Xue</a><sup>1*</sup>,</span>
+            <span class="author-block"><a href="https://apiecehann.github.io/">Min Nan</a><sup>2*</sup>,</span>
+            <span class="author-block"><a href="#">Xiaotong Liu</a><sup>3,4*</sup>,</span>
+            <span class="author-block"><a href="https://wendichen.me/">Wendi Chen</a><sup>1,4</sup>,</span>
+            <span class="author-block"><a href="#">Yuan Fang</a><sup>1,4</sup>,</span>
+            <span class="author-block"><a href="#">Jun Lv</a><sup>5</sup>,</span>
+            <span class="author-block"><a href="https://www.mvig.org/">Cewu Lu</a><sup>1,4,5‡</sup>,</span>
+            <span class="author-block"><a href="#">Chuan Wen</a><sup>1‡</sup></span>
+          </div>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University,</span>
-              <span class="author-block"><sup>2</sup>Southeast University,</span>
-              <span class="author-block"><sup>3</sup>USTC,</span>
-              <span class="author-block"><sup>4</sup>Shanghai Innovation Institute,</span>
-              <span class="author-block"><sup>5</sup>Noematrix Ltd.</span>
-            </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University,</span>
+            <span class="author-block"><sup>2</sup>Southeast University,</span>
+            <span class="author-block"><sup>3</sup>USTC,</span>
+            <span class="author-block"><sup>4</sup>Shanghai Innovation Institute,</span>
+            <span class="author-block"><sup>5</sup>Noematrix Ltd.</span>
+          </div>
 
-            <div class="is-size-6 publication-authors">
-              <span class="author-block">* Equal contribution.</span>
-              <span class="author-block">‡ Equal advising.</span>
-            </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block">* Equal contribution.</span>
+            <span class="author-block">‡ Equal advising.</span>
+          </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv</span>
                 </a>
               </span>
-              <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
-                  </a>
+                </a>
               </span>
             </div>
           </div>
@@ -132,8 +92,7 @@ in Robotic Manipulation</title>
         <source src="./static/videos/Demos.mp4" type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        A systematic study revealing how <strong>wide FoV fisheye cameras</strong> enhance robotic manipulation through superior 
-        spatial localization and scene generalization.
+        A systematic study revealing how <strong>wide FoV fisheye cameras</strong> enhance robotic manipulation through superior spatial localization and scene generalization.
       </h2>
     </div>
   </div>
@@ -146,139 +105,18 @@ in Robotic Manipulation</title>
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-The adoption of fisheye cameras in robotic manipulation, driven by their exceptionally wide Field of View (FoV), is rapidly outpacing a systematic understanding of their downstream effects on policy learning. This paper presents the first comprehensive empirical study to bridge this gap, rigorously analyzing the properties of wrist-mounted fisheye cameras for imitation learning. Through extensive experiments in both simulation and the real world, we investigate three critical research questions: spatial localization, scene generalization, and hardware generalization.
+            The adoption of fisheye cameras in robotic manipulation, driven by their exceptionally wide Field of View (FoV), is rapidly outpacing a systematic understanding of their downstream effects on policy learning. This paper presents the first comprehensive empirical study to bridge this gap.
           </p>
-          
-          <p>Our investigation reveals several key findings:</p>
           <ul>
-            <li>
-              <strong>Spatial Localization:</strong> Wide FoV significantly enhances localization, but this benefit is critically contingent on the <strong>visual complexity</strong> of the environment.
-            </li>
-            <li>
-              <strong>Scene Generalization:</strong> Fisheye-trained policies unlock <strong>superior scene generalization</strong> when trained with sufficient environmental diversity.
-            </li>
-            <li>
-              <strong>Hardware Generalization:</strong> We identify <strong>scale overfitting</strong> as the root cause of transfer failures and propose <strong>Random Scale Augmentation (RSA)</strong> to improve performance.
-            </li>
+            <li><strong>Spatial Localization:</strong> Wide FoV significantly enhances localization, but this benefit is critically contingent on the <strong>visual complexity</strong> of the environment.</li>
+            <li><strong>Scene Generalization:</strong> Fisheye-trained policies unlock <strong>superior scene generalization</strong> when trained with sufficient environmental diversity.</li>
+            <li><strong>Hardware Generalization:</strong> We identify <strong>scale overfitting</strong> as the root cause of transfer failures and propose <strong>Random Scale Augmentation (RSA)</strong> to improve performance.</li>
           </ul>
-
-          <p>
-            Collectively, our findings provide <strong>concrete, actionable guidance</strong> for the large-scale collection and effective use of fisheye datasets in robotic learning.
-          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-  </div>
-</section>
-
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
@@ -292,17 +130,12 @@ The adoption of fisheye cameras in robotic manipulation, driven by their excepti
   </div>
 </section>
 
-
 <footer class="footer">
   <div class="container">
-    <div class="columns is-centered">
-      <div class="column">
-        <div class="content has-text-centered">
-          <p>
-            This website is modified from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies Template</a>. Some website materials are adapted from <a href="https://transic-robot.github.io/">TRANSIC</a>.
-          </p>
-        </div>
-      </div>
+    <div class="content has-text-centered">
+      <p>
+        This website is modified from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies Template</a>. Some website materials are adapted from <a href="https://transic-robot.github.io/">TRANSIC</a>.
+      </p>
     </div>
   </div>
 </footer>
