@@ -105,13 +105,14 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            The adoption of fisheye cameras in robotic manipulation, driven by their exceptionally wide Field of View (FoV), is rapidly outpacing a systematic understanding of their downstream effects on policy learning. This paper presents the first comprehensive empirical study to bridge this gap.
+            The adoption of fisheye cameras in robotic manipulation, driven by their exceptionally wide Field of View (FoV), is rapidly outpacing a systematic understanding of their downstream effects on policy learning. This paper presents the first comprehensive empirical study to bridge this gap, rigorously analyzing the properties of wrist-mounted fisheye cameras for imitation learning. Through extensive experiments in both simulation and the real world, we investigate three critical research questions: spatial localization, scene generalization, and hardware generalization. Our investigation reveals that:
           </p>
           <ul>
             <li><strong>Spatial Localization:</strong> Wide FoV significantly enhances localization, but this benefit is critically contingent on the <strong>visual complexity</strong> of the environment.</li>
             <li><strong>Scene Generalization:</strong> Fisheye-trained policies unlock <strong>superior scene generalization</strong> when trained with sufficient environmental diversity.</li>
             <li><strong>Hardware Generalization:</strong> We identify <strong>scale overfitting</strong> as the root cause of transfer failures and propose <strong>Random Scale Augmentation (RSA)</strong> to improve performance.</li>
           </ul>
+           Collectively, our findings provide concrete, actionable guidance for the large-scale collection and effective use of fisheye datasets in robotic learning.
         </div>
       </div>
     </div>
