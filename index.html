@@ -103,7 +103,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+        <div class="content has-text-justified is-size-6">
           <p>
             The adoption of fisheye cameras in robotic manipulation, driven by their exceptionally wide Field of View (FoV), is rapidly outpacing a systematic understanding of their downstream effects on policy learning. This paper presents the first comprehensive empirical study to bridge this gap, rigorously analyzing the properties of wrist-mounted fisheye cameras for imitation learning. Through extensive experiments in both simulation and the real world, we investigate three critical research questions: spatial localization, scene generalization, and hardware generalization. Our investigation reveals that:
           </p>
@@ -112,7 +112,9 @@
             <li><strong>Scene Generalization:</strong> Fisheye-trained policies unlock <strong>superior scene generalization</strong> when trained with sufficient environmental diversity.</li>
             <li><strong>Hardware Generalization:</strong> We identify <strong>scale overfitting</strong> as the root cause of transfer failures and propose <strong>Random Scale Augmentation (RSA)</strong> to improve performance.</li>
           </ul>
-           Collectively, our findings provide concrete, actionable guidance for the large-scale collection and effective use of fisheye datasets in robotic learning.
+          <p>
+            Collectively, our findings provide concrete, actionable guidance for the large-scale collection and effective use of fisheye datasets in robotic learning.
+          </p>
         </div>
       </div>
     </div>
@@ -146,7 +148,7 @@
         <div class="content has-text-centered">
           <img src="./static/images/figure2.png" alt="Real-World Hardware Setup" style="width: 100%;">
           <p class="has-text-justified mt-3">
-            Our hardware platform comprises a <strong>Flexiv Rizon 4</strong> 7-axis robot arm and a <strong>DH AG-160-95</strong> adaptive gripper. 
+            Figure 2: Our hardware platform comprises a <strong>Flexiv Rizon 4</strong> 7-axis robot arm and a <strong>DH AG-160-95</strong> adaptive gripper. 
             High-quality demonstrations are collected via teleoperation with a <strong>Meta Quest 3</strong> headset.
           </p>
         </div>
@@ -157,7 +159,7 @@
         <div class="content has-text-centered">
           <img src="./static/images/figure3.png" alt="Simulation Rendering Pipeline" style="width: 100%;">
           <p class="has-text-justified mt-3">
-            To enable reliable fisheye benchmarking, we implemented a <strong>two-stage projection pipeline</strong> within the <strong>MuJoCo</strong> physics engine. 
+            Figure 3: To enable reliable fisheye benchmarking, we implemented a <strong>two-stage projection pipeline</strong> within the <strong>MuJoCo</strong> physics engine. 
             This process generates fisheye views from intermediate panoramic representations, allowing for precise lens parameter control.
           </p>
         </div>
@@ -166,7 +168,7 @@
       <div class="column is-12">
         <div class="box has-background-light">
           <h4 class="title is-5">Scaling Simulation Capabilities</h4>
-          <p class="is-size-6">
+          <p class="is-size-5">
             We adapt <strong>Robomimic</strong> and <strong>MimicGen</strong> benchmarks to evaluate our policies across <strong>6 challenging manipulation tasks</strong>. 
             To support RQ2, we utilize <strong>32 distinct background textures</strong> to provide sufficient environmental diversity during training.
           </p>
