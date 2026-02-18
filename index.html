@@ -128,7 +128,7 @@
         <div class="content has-text-centered">
           <img src="./static/images/figure2.png" alt="Real-World Hardware Setup" style="width: 100%;">
           <p class="has-text-justified mt-3">
-            Figure 1: Our hardware platform comprises a <strong>Flexiv Rizon 4</strong> 7-axis robot arm and a <strong>DH AG-160-95</strong> adaptive gripper. High-quality demonstrations are collected via teleoperation with a <strong>Meta Quest 3</strong> headset.
+            <strong>Figure 1</strong>: Our hardware platform comprises a <strong>Flexiv Rizon 4</strong> 7-axis robot arm and a <strong>DH AG-160-95</strong> adaptive gripper. High-quality demonstrations are collected via teleoperation with a <strong>Meta Quest 3</strong> headset.
           </p>
         </div>
       </div>
@@ -140,7 +140,7 @@
         <div class="content has-text-centered">
           <img src="./static/images/figure3.png" alt="Simulation Rendering Pipeline" style="width: 100%;">
           <p class="has-text-justified mt-3">
-            Figure 2: To enable reliable fisheye benchmarking, we implemented a <strong>two-stage projection pipeline</strong> within the <strong>MuJoCo</strong> physics engine. This process generates fisheye views from intermediate panoramic representations, allowing for precise lens parameter control.
+            <strong>Figure 2</strong>: To enable reliable fisheye benchmarking, we implemented a <strong>two-stage projection pipeline</strong> within the <strong>MuJoCo</strong> physics engine. This process generates fisheye views from intermediate panoramic representations, allowing for precise lens parameter control.
           </p>
         </div>
       </div>
@@ -166,7 +166,7 @@
     <div class="content has-text-centered">
       <img src="./static/images/figure1.png" alt="Study Design Overview" style="width: 100%;">
       <p class="has-text-justified mt-4">
-        Figure 3: Overview of the four factors analyzed to address our research questions: (a) Camera Model; (b) Scene Complexity; (c) Scene Diversity; (d) Camera Parameters.
+        <strong>Figure 3</strong>: Overview of the four factors analyzed to address our research questions: (a) Camera Model; (b) Scene Complexity; (c) Scene Diversity; (d) Camera Parameters.
       </p>
     </div>
   </div>
@@ -232,11 +232,11 @@
     <h3 class="subtitle is-5 has-text-weight-bold">How do fisheye cameras affect generalization to novel backgrounds?</h3>
     <div class="content has-text-justified">
       <p>
-        In robotic manipulation, the motion of a wrist-mounted camera naturally induces background shifts, which acts as a form of implicit data augmentation. We investigate the <b>Scaling Law</b> of policy generalization by increasing the number of unique training scenes (<i>N</i>) while holding the total data volume fixed to isolate the impact of environmental diversity.
+        In robotic manipulation, the motion of a wrist-mounted camera naturally induces background shifts, which acts as a form of implicit data augmentation. We investigate the <b>Scaling Law</b> of policy generalization by increasing the number of unique training scenes (N) while holding the total data volume fixed to isolate the impact of environmental diversity.
       </p>
       <div class="box has-background-info-light">
         <p>
-          <strong>Hypothesis:</strong> Fisheye-trained policies can more effectively utilize scene diversity to improve generalization, exhibiting a steeper performance scaling curve as the number of unique training scenes (<i>N</i>) increases.
+          <strong>Hypothesis:</strong> Fisheye-trained policies can more effectively utilize scene diversity to improve generalization, exhibiting a steeper performance scaling curve as the number of unique training scenes (N) increases.
         </p>
       </div>
       <p>
@@ -245,10 +245,10 @@
     </div>
 
     <div class="columns is-centered">
-      <div class="column is-10 has-text-centered">
+      <div class="column is-8 has-text-centered">
         <img src="./static/images/figure4.png" alt="Scaling Law Results" style="width: 100%; border-radius: 10px;">
         <p class="mt-2">
-          <strong>Figure 5:</strong> Success rate and normalized score vs. the number of training scenes (<i>N</i>).
+          <strong>Figure 4:</strong> Success rate and normalized score vs. the number of training scenes (N).
         </p>
       </div>
     </div>
@@ -283,9 +283,9 @@
       </p>
 
       <div class="columns is-centered">
-        <div class="column is-10">
+        <div class="column is-6">
           <div class="content has-text-centered">
-            <img src="./static/images/figure5.png" alt="Random Scale Augmentation Strategy" style="width: 100%;">
+            <img src="./static/images/figure5.png" alt="Random Scale Augmentation Strategy" style="width: 100%; border-radius: 10px;">
             <p class="mt-2">
               <strong>Figure 5:</strong> Comparison between standard Random Crop Augmentation (fixed scale) and our proposed Random Scale Augmentation (RSA).
             </p>
@@ -295,7 +295,7 @@
     </div>
 
     <div class="columns is-centered">
-      <div class="column is-10">
+      <div class="column is-7">
         <h4 class="title is-5 has-text-centered">Zero-shot Cross-Camera Success Rate (Simulation)</h4>
         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
           <thead>
@@ -350,7 +350,7 @@
     </div>
 
     <div class="columns is-centered">
-      <div class="column is-10">
+      <div class="column is-7">
         <h4 class="title is-5 has-text-centered">Real-World Hardware Generalization (Normalized Score)</h4>
         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
           <thead>
