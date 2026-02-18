@@ -175,6 +175,7 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">RQ1: Spatial Localization</h2>
+    <h3 class="subtitle is-5 has-text-weight-bold">Can the wider FoV of fisheye cameras help policy localization?</h3>
     <div class="content has-text-justified">
       <p>
         In this section, we investigate whether the wider FoV of fisheye cameras enhances policy localization. Given our wrist-view-only configuration, the policy must rely on background cues for spatial reasoning.
@@ -228,22 +229,33 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">RQ2: Scene Generalization</h2>
+    <h3 class="subtitle is-5 has-text-weight-bold">How do fisheye cameras affect generalization to novel backgrounds?</h3>
     <div class="content has-text-justified">
       <p>
-        We investigate the <strong>Scaling Law</strong> of policy generalization as environmental diversity increases. Fisheye cameras exhibit a significantly higher performance ceiling compared to pinhole cameras.
+        In robotic manipulation, the motion of a wrist-mounted camera naturally induces background shifts, which acts as a form of implicit data augmentation. We investigate the <b>Scaling Law</b> of policy generalization by increasing the number of unique training scenes (<i>N</i>) while holding the total data volume fixed to isolate the impact of environmental diversity.
+      </p>
+      <div class="box has-background-info-light">
+        <p>
+          <strong>Hypothesis:</strong> Fisheye-trained policies can more effectively utilize scene diversity to improve generalization, exhibiting a steeper performance scaling curve as the number of unique training scenes (<i>N</i>) increases.
+        </p>
+      </div>
+      <p>
+        We validate this through zero-shot evaluation on distinct unseen scenes in both simulation and real-world environments. Our results demonstrate that fisheye cameras exhibit significantly greater scaling potential compared to conventional cameras; for instance, the real-world fisheye policy achieves near-perfect scores with just eight diverse training scenes.
       </p>
     </div>
+
     <div class="columns is-centered">
       <div class="column is-10 has-text-centered">
         <img src="./static/images/figure4.png" alt="Scaling Law Results" style="width: 100%; border-radius: 10px;">
         <p class="mt-2">
-          <strong>Figure 4:</strong> Success rate vs. number of training scenes (<i>N</i>).
+          <strong>Figure 5:</strong> Success rate and normalized score vs. the number of training scenes (<i>N</i>).
         </p>
       </div>
     </div>
-    <div class="notification is-info is-light mt-4">
+
+    <div class="notification is-light mt-4">
       <p>
-        <strong>Insight:</strong> The fisheye policy achieves near-perfect scores with <i>N=8</i> scenes, proving it captures <strong>invariant geometric features</strong>.
+        <strong>Conclusion:</strong> Maximizing <strong>environmental diversity</strong> during data collection is essential to unlock the full generalization capabilities of fisheye cameras.
       </p>
     </div>
   </div>
@@ -252,40 +264,134 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">RQ3: Hardware Generalization</h2>
+    <h3 class="subtitle is-5 has-text-weight-bold">Can policies maintain performance when deployed on new fisheye lenses?</h3>
+    
     <div class="content has-text-justified">
       <p>
-        Direct transfer across different camera models often fails due to <strong>Scale Overfitting</strong>. Policies overfit to specific focal lengths of the training camera.
+        The pronounced and varied distortion profiles of fisheye lenses make cross-camera transfer a non-trivial challenge. Policies trained on a specific lens often rely on the absolute pixel scale of objects to determine distance. When deployed on a lens with different intrinsic parameters, these absolute scales change, causing the policy to misinterpret the scene—such as perceiving an object as closer or farther than it actually is—leading to catastrophic failures.
       </p>
-      <div class="box has-background-warning-light">
+      
+      <div class="box has-background-info-light">
         <p>
-          <strong>The Discovery:</strong> RSA forces the model to learn scale-invariant representations, effectively bridging the hardware gap.
+          <strong>Hypothesis:</strong> The primary bottleneck for cross-camera transfer is "Scale Overfitting". This can be mitigated by using <strong>Random Scale Augmentation (RSA)</strong> to force the policy to focus on relative spatial relationships (e.g., object scale relative to the gripper) rather than absolute pixel sizes.
         </p>
       </div>
-      <h3 class="title is-4">Random Scale Augmentation (RSA)</h3>
+      
       <p>
-        RSA randomized cropping and resizing during training prevents scale overfitting.
+        To verify this, we conducted extensive experiments evaluating zero-shot transfer performance across five unseen camera configurations. These configurations represent significant geometric domain shifts, varying in focal length and distortion intensity. We compare a baseline policy against our proposed RSA strategy in both simulation and real-world settings.
       </p>
     </div>
+  </div>
+
+    <div class="content has-text-centered">
+        <img src="./static/images/figure5.png" alt="Random Scale Augmentation Strategy" style="width: 100%;">
+        <p class="mt-2">
+          <strong>Figure 5:</strong> Comparison between standard Random Crop Augmentation and our proposed Random Scale Augmentation (RSA).
+        </p>
+      </div>
+    </div>
+
     <div class="columns is-centered">
-      <div class="column is-10">
-        <h4 class="title is-5 has-text-centered">Cross-Hardware Transfer Success Rate</h4>
-        <table class="table is-fullwidth is-bordered is-striped">
+      <div class="column is-12">
+        <h4 class="title is-5 has-text-centered">Zero-shot Cross-Camera Success Rate (Simulation)</h4>
+        <table class="table is-fullwidth is-striped is-hoverable is-bordered">
           <thead>
             <tr class="has-background-light">
-              <th>Training Setup</th><th>Evaluation Hardware</th><th>Vanilla</th><th><strong>With RSA</strong></th>
+              <th>Evaluation Setting</th>
+              <th>Lens Characteristic</th>
+              <th>Baseline (Standard Aug.)</th>
+              <th><strong>Ours (RSA)</strong></th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Camera A</td><td>Camera B</td><td>0.18</td><td><strong>0.64 (+255%)</strong></td></tr>
-            <tr><td>Camera B</td><td>Camera A</td><td>0.22</td><td><strong>0.59 (+168%)</strong></td></tr>
+            <tr>
+              <td><strong>Seen Param</strong></td>
+              <td>Training Baseline</td>
+              <td>0.56</td>
+              <td><strong>0.67</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Param 1</strong></td>
+              <td>Decreased FoV</td>
+              <td>0.30</td>
+              <td><strong>0.41</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Param 2</strong></td>
+              <td>Alternative Projection Model</td>
+              <td>0.41</td>
+              <td><strong>0.43</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Param 3</strong></td>
+              <td>Geometric Scale Shift</td>
+              <td>0.15</td>
+              <td><strong>0.57</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Param 4</strong></td>
+              <td>Increased Distortion</td>
+              <td>0.17</td>
+              <td><strong>0.40</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Param 5</strong></td>
+              <td>Extreme Focal Length Change</td>
+              <td>0.01</td>
+              <td><strong>0.06</strong></td>
+            </tr>
           </tbody>
         </table>
-        <p class="has-text-centered">Table 4: RSA boost during cross-hardware deployment.</p>
+        <p class="content is-size-6 has-text-centered">Table 3: Comparison of success rates across six tasks in simulation for unseen camera parameters.</p>
       </div>
     </div>
-    <div class="notification is-success is-light mt-5">
+
+    <div class="columns is-centered">
+      <div class="column is-12">
+        <h4 class="title is-5 has-text-centered">Real-World Hardware Generalization (Normalized Score)</h4>
+        <table class="table is-fullwidth is-striped is-hoverable is-bordered">
+          <thead>
+            <tr class="has-background-light">
+              <th>Physical Lens</th>
+              <th>FOV Angle</th>
+              <th>Induced Scale Shift</th>
+              <th>Baseline Score</th>
+              <th><strong>Ours (RSA) Score</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Seen Camera</td>
+              <td>180°</td>
+              <td>1.0x (Training)</td>
+              <td>1.0000</td>
+              <td><strong>1.0000</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Narrow Lens</strong></td>
+              <td>150°</td>
+              <td>~1.2x (Zoom In)</td>
+              <td>0.5000</td>
+              <td><strong>0.9500</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Wide Lens</strong></td>
+              <td>220°</td>
+              <td>~0.8x (Zoom Out)</td>
+              <td>0.0025</td>
+              <td><strong>0.6000</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="content is-size-6 has-text-centered">Table 4: Zero-shot cross-camera transfer on physical hardware using distinct lenses.</p>
+      </div>
+    </div>
+
+    
+
+    <div class="notification is-light mt-4">
       <p>
-        <strong>Actionable Guidance:</strong> RSA ensures policies remain robust across diverse camera hardware.
+        <strong>Conclusion:</strong> Standard fisheye policies are highly sensitive to absolute object scale. Learning relative scale via strong data augmentation like <strong>RSA</strong> is essential to ensure policies are robust to hardware variations and can effectively leverage datasets from diverse lens sources.
       </p>
     </div>
   </div>
