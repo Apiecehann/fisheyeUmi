@@ -397,6 +397,201 @@
     </div>
   </div>
 </section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Experiments</h2>
+    <hr>
+    
+    <div class="content">
+      <h3 class="title is-4">Main Results</h3>
+      <p>
+        We employ a <strong>normalized, multi-stage scoring metric</strong> for real-world evaluation to provide a more granular assessment of policy capability than binary success rates. Each evaluation setup consists of <strong>20 trials</strong>, and we report the cumulative normalized score. </p>
+
+      <h4 class="title is-5">Task 1: Pick Cup</h4>
+      <div class="columns is-vcentered">
+        <div class="column is-7">
+          <ul>
+            <li><strong>Task Description:</strong> The goal is to pick up a cup from a random starting position and place it upright onto a designated coaster.</li>
+            <li><strong>Evaluation Protocol:</strong> We test the policy under two environmental settings: <b>Feature-Poor</b> (solid-colored background) and <b>Feature-Rich</b> (patterned cloths with diverse textures).</li>
+            <li><strong>Score Metric:</strong> 
+              <ul>
+                <li>Stage 1 (0.00 pts): Failed to grasp or place the cup. </li>
+                <li>Stage 2 (0.50 pts): Placed on coaster but toppled over. </li>
+                <li>Stage 3 (1.00 pts): Successfully placed upright on the coaster. </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="column is-5">
+          <img src="./static/images/task_pick_cup.png" alt="Pick Cup Task" style="border-radius: 8px;">
+        </div>
+      </div>
+
+      <h4 class="title is-5">Task 2: Fold Towel</h4>
+      <div class="columns is-vcentered">
+        <div class="column is-7">
+          <ul>
+            <li><strong>Task Description:</strong> This task requires performing two consecutive folds on a deformable towel. The robot must grasp a corner, fold it diagonally, and then repeat for the second corner.</li>
+            <li><strong>Evaluation Protocol:</strong> Focuses on the policy's ability to handle deformable objects and maintain localization across multi-step sequences.</li>
+            <li><strong>Score Metric:</strong> Four stages (0.25 pts each) corresponding to: 1. Grasping the first corner, 2. Completing the first fold, 3. Grasping the second corner, and 4. Completing the final fold.</li>
+          </ul>
+        </div>
+        <div class="column is-5">
+          <img src="./static/images/task_fold_towel.png" alt="Fold Towel Task" style="border-radius: 8px;">
+        </div>
+      </div>
+
+      <h4 class="title is-5">Task 3: Hang Chinese Knot</h4>
+      <div class="columns is-vcentered">
+        <div class="column is-7">
+          <ul>
+            <li><strong>Task Description:</strong> Requires precise rotational manipulation to hang a Chinese knot onto a designated hook on a stand.</li>
+            <li><strong>Evaluation Protocol:</strong> Since the initial grasping phase is successfully completed by most baselines, we focus solely on the precise placement required to secure the knot.</li>
+            <li><strong>Score Metric:</strong> 
+              <ul>
+                <li>Stage 1 (0.00 pts): Failed to hang (e.g., dropped or missed the hook). </li>
+                <li>Stage 2 (1.00 pts): Successfully secured the knot onto the hook. </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="column is-5">
+          <img src="./static/images/task_hang_knot.png" alt="Hang Chinese Knot Task" style="border-radius: 8px;">
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">RQ1: Spatial Localization</h2>
+    <div class="content has-text-justified">
+      <p>
+        <strong>Hypothesis:</strong> The exceptionally wide Field of View (FoV) of wrist-mounted fisheye cameras enhances policy localization by integrating a greater density of static environmental features as visual anchors. Consequently, we expect policy performance to exhibit a strong positive dependency on the <b>visual complexity</b> of the training scene.
+      </p>
+    </div>
+
+    <h3 class="title is-4">Quantitative Results</h3>
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="table-container">
+          <table class="table is-fullwidth is-striped is-hoverable is-bordered has-text-centered">
+            <thead>
+              <tr class="has-background-light">
+                <th>Task</th>
+                <th>Camera Setup</th>
+                <th>Feature-Poor (Plain)</th>
+                <th>Feature-Rich (Patterned)</th>
+                <th>Performance Gain</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="has-text-weight-bold">Pick Cup</td>
+                <td>Fisheye (State-free)</td>
+                <td>0.525</td>
+                <td><strong>0.800</strong></td>
+                <td class="has-text-success">+0.275</td>
+              </tr>
+              <tr>
+                <td class="has-text-weight-bold">Fold Towel</td>
+                <td>Fisheye (State-free)</td>
+                <td>0.100</td>
+                <td><strong>0.700</strong></td>
+                <td class="has-text-success">+0.600</td>
+              </tr>
+              <tr>
+                <td class="has-text-weight-bold">Hang Chinese Knot</td>
+                <td>Fisheye (State-free)</td>
+                <td>0.200</td>
+                <td><strong>0.500</strong></td>
+                <td class="has-text-success">+0.300</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="is-size-7 mt-2">
+          *Note: All results are based on <b>state-free policies</b> (without proprioception) to isolate the visual localization capability of the visual encoder.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="title is-4 mt-6">Qualitative Rollouts</h3>
+    <p class="content">We demonstrate the robustness of fisheye-based policies across different tasks and environmental settings.</p>
+
+    <h4 class="title is-5">Task 1: Pick Cup</h4>
+    <div class="columns is-multiline">
+      <div class="column is-4">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/pick_pinhole_poor.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">Pinhole + Poor Scene<br>(Score: 0.125)</p>
+      </div>
+      <div class="column is-4">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/pick_fisheye_poor.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">Fisheye + Poor Scene<br>(Score: 0.525)</p>
+      </div>
+      <div class="column is-4">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;">
+          <source src="./static/videos/pick_fisheye_rich.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7"><strong>Fisheye + Rich Scene<br>(Score: 0.800)</strong></p>
+      </div>
+    </div>
+
+    <h4 class="title is-5">Task 2: Fold Towel</h4>
+    <div class="columns is-multiline">
+      <div class="column is-4">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/fold_pinhole_rich.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">Pinhole + Rich Scene<br>(Score: 0.316)</p>
+      </div>
+      <div class="column is-4">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;">
+          <source src="./static/videos/fold_fisheye_rich.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7"><strong>Fisheye + Rich Scene<br>(Score: 0.700)</strong></p>
+      </div>
+      <div class="column is-4">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/fold_fisheye_rich_state.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">Fisheye + Rich + State<br>(Score: 0.917)</p>
+      </div>
+    </div>
+
+    <h4 class="title is-5">Task 3: Hang Chinese Knot</h4>
+    <div class="columns is-multiline">
+      <div class="column is-4">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/hang_fisheye_poor.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">Fisheye + Poor Scene<br>(Score: 0.200)</p>
+      </div>
+      <div class="column is-4">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;">
+          <source src="./static/videos/hang_fisheye_rich.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7"><strong>Fisheye + Rich Scene<br>(Score: 0.500)</strong></p>
+      </div>
+      <div class="column is-4">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/hang_fisheye_rich_state.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">Fisheye + Rich + State<br>(Score: 0.700)</p>
+      </div>
+    </div>
+
+    <div class="notification is-light mt-5">
+      <p>
+        <strong>Conclusion:</strong> These results confirm that the fisheye camera's wide contextual view implicitly encodes the robot's spatial relationship with the environment. This renders explicit proprioceptive state redundant in feature-rich environments, allowing the policy to rely exclusively on vision for high-precision manipulation.
+      </p>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
