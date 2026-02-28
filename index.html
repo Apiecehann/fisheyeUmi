@@ -480,8 +480,8 @@
               <tr class="has-background-light">
                 <th>Task</th>
                 <th>Camera Setup</th>
-                <th>Feature-Poor (Plain)</th>
-                <th>Feature-Rich (Patterned)</th>
+                <th>Feature-Poor</th>
+                <th>Feature-Rich</th>
                 <th>Performance Gain</th>
               </tr>
             </thead>
@@ -592,6 +592,333 @@
     </div>
   </div>
 </section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">RQ2: Scene Generalization</h2>
+    <div class="content has-text-justified">
+      <p>
+        <strong>Hypothesis:</strong> Fisheye-trained policies can more effectively utilize scene diversity to improve generalization, exhibiting a steeper performance scaling curve as the number of unique training scenes (N) increases.
+        To isolate the impact of environmental diversity from data volume, we maintain a <b>Fixed Total Data Volume</b> (e.g., 200 trajectories for real-world tasks). Any performance gain is thus attributable solely to the increased diversity of the visual data.
+      </p>
+    </div>
+
+    <h3 class="title is-4">Scaling Analysis (Real-World Pick Cup)</h3>
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="table-container">
+          <table class="table is-fullwidth is-striped is-hoverable is-bordered has-text-centered">
+            <thead>
+              <tr class="has-background-light">
+                <th>Number of Scenes ($N$)</th>
+                <th>Pinhole Avg. Score</th>
+                <th>Fisheye Avg. Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>N=1</td>
+                <td>0.081</td>
+                <td>0.556</td>
+              </tr>
+              <tr>
+                <td>N=2</td>
+                <td>0.106</td>
+                <td>0.638</td>
+              </tr>
+              <tr>
+                <td>N=4</td>
+                <td>0.238</td>
+                <td>0.869</td>
+              </tr>
+              <tr>
+                <td>N=6</td>
+                <td>0.225</td>
+                <td>0.913</td>
+              </tr>
+              <tr>
+                <td class="has-text-weight-bold">N=8</td>
+                <td>0.181</td>
+                <td><strong>0.988</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="is-size-7 mt-2">
+          *Note: Scores represent the normalized performance on <b>unseen</b> test backgrounds. Fisheye policies achieve near-perfect performance as scene diversity increases.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="title is-4 mt-6">Performance Scaling on Unseen Backgrounds</h3>
+    <p class="content">
+      Visual comparison of Pinhole vs. Fisheye policies on the <b>same unseen</b> test background as training diversity (N) increases from 1 to 8.
+    </p>
+
+    <h4 class="title is-5">Pinhole Policies (N = 1, 2, 4, 6, 8)</h4>
+    <div class="columns is-variable is-1">
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/rq2_pinhole_n1.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">N=1</p>
+      </div>
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/rq2_pinhole_n2.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">N=2</p>
+      </div>
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/rq2_pinhole_n4.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">N=4</p>
+      </div>
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/rq2_pinhole_n6.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">N=6</p>
+      </div>
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/rq2_pinhole_n8.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">N=8</p>
+      </div>
+    </div>
+
+    <h4 class="title is-5 mt-4">Fisheye Policies (N = 1, 2, 4, 6, 8)</h4>
+    <div class="columns is-variable is-1">
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/rq2_fisheye_n1.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">N=1</p>
+      </div>
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/rq2_fisheye_n2.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">N=2</p>
+      </div>
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/rq2_fisheye_n4.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">N=4</p>
+      </div>
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border-radius: 5px;">
+          <source src="./static/videos/rq2_fisheye_n6.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7">N=6</p>
+      </div>
+      <div class="column is-one-fifth">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;">
+          <source src="./static/videos/rq2_fisheye_n8.mp4" type="video/mp4">
+        </video>
+        <p class="has-text-centered is-size-7"><strong>N=8 (Robust)</strong></p>
+      </div>
+    </div>
+
+    <div class="notification is-light mt-5">
+      <p>
+        <strong>Conclusion:</strong> The wider FoV of the fisheye camera acts as a potent implicit data augmentation, enabling the policy to better leverage scene diversity for robust cross-scene generalization. Maximizing scene diversity is essential to unlock the full potential of fisheye-based robotic learning.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">RQ3: Hardware Generalization</h2>
+    <div class="content has-text-justified">
+      <p>
+        <strong>Research Question:</strong> How well do policies trained on one fisheye camera transfer to a new, unseen fisheye lens with different intrinsic parameters?
+      </p>
+      <div class="box has-background-info-light">
+        <p>
+          <strong>Hypothesis:</strong> The primary failure mode for cross-camera transfer is <b>Scale Overfitting</b>. Policies trained on a specific lens overfit to absolute pixel scales. This can be mitigated by <b>Random Scale Augmentation (RSA)</b>, which compels the network to learn scale-invariant relative spatial relationships.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="title is-4">Scale Sensitivity Analysis (Mechanism Verification)</h3>
+    <div class="content">
+      <p>
+        We first simulate geometric domain shifts by applying center-crop scale factors ($S$) during inference to mimic changes in focal length. The baseline policy exhibits a characteristic <b>"inverted-V"</b> performance drop, confirming it relies heavily on absolute object scales.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="table-container">
+          <table class="table is-fullwidth is-striped is-hoverable is-bordered has-text-centered">
+            <thead>
+              <tr class="has-background-light">
+                <th>Scale Factor (S)</th>
+                <th>Effect</th>
+                <th>Baseline (Fixed Scale)</th>
+                <th><strong>Ours (RSA)</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>S = 0.70</td>
+                <td>Zoom In</td>
+                <td>0.000</td>
+                <td><strong>0.900</strong></td>
+              </tr>
+              <tr>
+                <td>S = 0.85</td>
+                <td>Moderate Zoom In</td>
+                <td>0.950</td>
+                <td><strong>1.000</strong></td>
+              </tr>
+              <tr>
+                <td>S = 1.00</td>
+                <td>Training Scale</td>
+                <td>1.000</td>
+                <td><strong>1.000</strong></td>
+              </tr>
+              <tr>
+                <td>S = 1.15</td>
+                <td>Moderate Zoom Out</td>
+                <td>0.750</td>
+                <td><strong>0.975</strong></td>
+              </tr>
+              <tr>
+                <td>S = 1.30</td>
+                <td>Zoom Out</td>
+                <td>0.650</td>
+                <td><strong>1.000</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="title is-4 mt-6">Real-World Cross-Camera Verification</h3>
+    <div class="content">
+      <p>
+        We deploy the policies on physical lenses with different fields of view (FoV). RSA demonstrates a broad <b>generalization plateau</b>, maintaining robust performance even when the lens scale deviates significantly.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="table-container">
+          <table class="table is-fullwidth is-striped is-hoverable is-bordered has-text-centered">
+            <thead>
+              <tr class="has-background-light">
+                <th>Physical Lens Type</th>
+                <th>Induced Scale Shift</th>
+                <th>Baseline Score</th>
+                <th><strong>Ours (RSA) Score</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Seen Camera (180°)</td>
+                <td>1.0x (Training Scale)</td>
+                <td>1.0000</td>
+                <td><strong>1.0000</strong></td>
+              </tr>
+              <tr>
+                <td>Narrow Lens (150°)</td>
+                <td>~1.2x (Zoom In)</td>
+                <td>0.5000</td>
+                <td><strong>0.9500</strong></td>
+              </tr>
+              <tr>
+                <td>Wide Lens (220°)</td>
+                <td>~0.8x (Zoom Out)</td>
+                <td>0.0025</td>
+                <td><strong>0.6000</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="title is-4 mt-6">Failure Mode Analysis vs. RSA Robustness</h3>
+    <p class="content">
+      Visualizing the "Depth-Scale Ambiguity": how scale shifts lead to depth misinterpretation in standard policies, and how RSA resolves it.
+    </p>
+
+    <h4 class="title is-5">Baseline Policy (Scale Overfitting)</h4>
+    <div class="columns is-variable is-1">
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%"><source src="./static/videos/rq3_base_1.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom In (S=0.7):</b><br>Undershooting (Perceived as closer) </p>
+      </div>
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%"><source src="./static/videos/rq3_base_2.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom In (S=0.85):</b><br>Undershooting (Perceived as closer) </p>
+      </div>
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%"><source src="./static/videos/rq3_base_3.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Seen Scale (S=1.00):</b><br>Success </p>
+      </div>
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%"><source src="./static/videos/rq3_base_4.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom Out (S=1.15):</b><br>Overshooting/Collision </p>
+      </div>
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%"><source src="./static/videos/rq3_base_5.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom Out (S=1.30):</b><br>Overshooting/Collision </p>
+      </div>
+    </div>
+
+    <h4 class="title is-5 mt-4">Ours (Random Scale Augmentation)</h4>
+    <div class="columns is-variable is-1">
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;"><source src="./static/videos/rq3_rsa_1.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom In (S=0.70):</b> Accurate Depth</p>
+      </div>
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;"><source src="./static/videos/rq3_rsa_2.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom In (S=0.85):</b> Accurate Depth</p>
+      </div>
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;"><source src="./static/videos/rq3_rsa_3.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Seen Scale (S=1.00):</b> Accurate Depth</p>
+      </div>
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;"><source src="./static/videos/rq3_rsa_4.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom Out (S=1.15):</b> Accurate Depth</p>
+      </div>
+      <div class="column is-one-five">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;"><source src="./static/videos/rq3_rsa_5.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom Out (S=1.30):</b> Accurate Depth</p>
+      </div>
+    </div>
+
+<h4 class="title is-5">Real-World Cross-Camera Verification(Baseline Policy)</h4>
+    <div class="columns is-variable is-1">
+      <div class="column is-one-two">
+        <video autoplay muted loop playsinline width="100%"><source src="./static/videos/rq3_real_base_1.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom In (S=0.70):</b><br>Undershooting (Perceived as closer)</p>
+      </div>
+      <div class="column is-one-two">
+        <video autoplay muted loop playsinline width="100%"><source src="./static/videos/rq3_real_base_3.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom Out (S=1.30):</b><br>Overshooting (Perceived as farther)</p>
+      </div>
+    </div>
+
+    <h4 class="title is-5 mt-4">Real-World Cross-Camera Verification(Ours : Random Scale Augmentation)</h4>
+    <div class="columns is-variable is-1">
+      <div class="column is-one-two">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;"><source src="./static/videos/rq3_real_rsa_1.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom In:</b> Accurate Depth</p>
+      </div>
+      <div class="column is-one-two">
+        <video autoplay muted loop playsinline width="100%" style="border: 2px solid #00d1b2; border-radius: 5px;"><source src="./static/videos/rq3_real_rsa_3.mp4" type="video/mp4"></video>
+        <p class="has-text-centered is-size-7"><b>Zoom Out:</b> Accurate Depth</p>
+      </div>
+    </div>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
